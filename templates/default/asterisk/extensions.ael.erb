@@ -1,0 +1,15 @@
+context default {
+    s => Hangup();
+    _ => Hangup();
+}
+
+context verboice {
+    s => Hangup();
+    h => NoOp();
+    _. => AGI(agi://localhost:<%= node['verboice']['broker']['port'] %>,,${EXTEN});
+}
+
+context verboice-restart {
+    h => NoOp();
+    _. => AGI(agi://localhost:<%= node['verboice']['broker']['port'] %>,${EXTEN});
+}

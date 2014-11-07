@@ -1,0 +1,25 @@
+---
+driver:
+  name: vagrant
+  customize:
+    cpus: 4
+    memory: 2048
+
+
+provisioner:
+  name: chef_solo
+  solo_rb:
+    ssl_verify_mode: verify_peer
+
+platforms:
+  - name: ubuntu-14.04
+  # - name: ubuntu-12.04
+  # - name: centos-6.4
+
+suites:
+  - name: default
+    run_list:
+      - recipe[mysql::server]
+      - recipe[verboice::default]
+      - recipe[verboice::asterisk]
+    attributes:

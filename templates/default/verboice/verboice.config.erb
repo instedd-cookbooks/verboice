@@ -1,0 +1,51 @@
+[
+  {verboice, [
+    {asterisk_config_dir, "<%= node['verboice']['broker']['asterisk']['config_dir'] %>"},
+    {asterisk_sounds_dir, "<%= node['verboice']['broker']['asterisk']['sounds_dir'] %>"},
+    {asterisk_agi_use_pipe_separator, <%= node['verboice']['broker']['asterisk']['agi_use_pipe_separator'] %>},
+    {broker_port, <%= node['verboice']['broker']['port'] %>},
+    {base_url, "http://<%= node['verboice']['host_name'] %>"},
+    {record_dir, "/u/apps/verboice/current/data/call_logs/"},
+
+    {db_name, "verboice"},
+    {db_user, "<%= node['mysql']['admin_username'] %>"},
+    {db_pass, "<%= node['mysql']['admin_password'] %>"},
+    {db_host, "<%= node['mysql']['server_host'] %>"},
+
+    {crypt_secret, "<%= node['verboice']['attr_encrypted_key'] %>"},
+
+    {nuntium_host, "<%= node['verboice']['broker']['nuntium']['host'] %>"},
+    {nuntium_account, "<%= node['verboice']['broker']['nuntium']['account'] %>"},
+    {nuntium_app, "<%= node['verboice']['broker']['nuntium']['application'] %>"},
+    {nuntium_app_password, "<%= node['verboice']['broker']['nuntium']['password'] %>"},
+
+    {twilio_callback_url, "http://<%= node['verboice']['host_name'] %>/twilio"}
+  ]},
+
+  {lager, [
+    {handlers, [
+      {lager_console_backend, [info, {lager_default_formatter, [time,color," [",severity,"] [",{pid,"unknown_pid"},"|",{short_activity,"undefined"},"] ",{module,"unknown_module"},": ",message,"\e[0m\r\n"]}]},
+      {lager_poirot_backend, [{level, debug}]}
+    ]},
+    {colored, true}
+  ]},
+
+  {poirot, [
+    {source, <<"verboice-broker">>},
+    {sender, {zmq, [{url, "tcp://10.147.15.222:2120"}]}}
+  ]},
+
+  {inets, [
+    {services, [
+      {httpd, [
+        {server_name, "verboice_broker"},
+        {server_root, "."},
+        {document_root, "tmp/www"},
+        {port, <%= node['verboice']['broker']['httpd']['port'] %>},
+        {modules, [twilio_httpd_module, mod_get, mod_log]},
+        {transfer_log, "log/httpd.log"},
+        {error_log, "log/httpd_error.log"}
+      ]}
+    ]}
+  ]}
+].

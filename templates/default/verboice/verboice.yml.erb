@@ -1,0 +1,8 @@
+ispeech_format: mp3
+asset_host: http://<%= node['verboice']['host_name'] %>
+default_url_options:
+  host: <%= node['verboice']['host_name'] %>
+  protocol: http
+default_mailer_options:
+  from: "<%= node['verboice']['from_email'] %>"
+poirot_elasticsearch_url: http://10.147.15.222:9200

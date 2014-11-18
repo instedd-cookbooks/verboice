@@ -14,5 +14,5 @@ default['verboice']['broker']['httpd']['port'] = 8080
 default['verboice']['oauth']['google']['api_key'] = ''
 default['verboice']['oauth']['google']['api_secret'] = ''
 
-default['verboice']['host_name'] = 'verboice.instedd.org'
+default['verboice']['host_name'] = node['fqdn']
 default['verboice']['from_email'] = 'verboice@instedd.org'

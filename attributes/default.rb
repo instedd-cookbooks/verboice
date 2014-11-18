@@ -16,3 +16,9 @@ default['verboice']['oauth']['google']['api_secret'] = ''
 
 default['verboice']['host_name'] = node['fqdn']
 default['verboice']['from_email'] = 'verboice@instedd.org'
+
+default['verboice']['poirot']['enabled'] = false
+default['verboice']['poirot']['debug'] = false
+default['verboice']['poirot']['server'] = ''
+default['verboice']['poirot']['source'] = 'verboice-ui'
+default['verboice']['poirot']['elasticsearch_url'] = ''

@@ -5,4 +5,4 @@ default_url_options:
   protocol: http
 default_mailer_options:
   from: "<%= node['verboice']['from_email'] %>"
-poirot_elasticsearch_url: http://10.147.15.222:9200
+poirot_elasticsearch_url: <%= node['verboice']['poirot']['elasticsearch_url'] %>

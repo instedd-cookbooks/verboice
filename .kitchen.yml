@@ -23,3 +23,8 @@ suites:
       - recipe[verboice::default]
       - recipe[verboice::asterisk]
     attributes:
+      verboice:
+        poirot:
+          enabled: true
+          server: localhost:2120
+

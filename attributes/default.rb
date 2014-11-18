@@ -22,3 +22,8 @@ default['verboice']['poirot']['debug'] = false
 default['verboice']['poirot']['server'] = ''
 default['verboice']['poirot']['source'] = 'verboice-ui'
 default['verboice']['poirot']['elasticsearch_url'] = ''
+
+default['verboice']['guisso']['enabled'] = false
+default['verboice']['guisso']['url'] = 'https://login.instedd.org'
+default['verboice']['guisso']['client_id'] = ''
+default['verboice']['guisso']['client_secret'] = ''

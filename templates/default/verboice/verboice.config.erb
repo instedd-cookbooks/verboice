@@ -3,7 +3,7 @@
     {asterisk_config_dir, "<%= node['verboice']['broker']['asterisk']['config_dir'] %>"},
     {asterisk_sounds_dir, "<%= node['verboice']['broker']['asterisk']['sounds_dir'] %>"},
     {asterisk_agi_use_pipe_separator, <%= node['verboice']['broker']['asterisk']['agi_use_pipe_separator'] %>},
-    {broker_port, <%= node['verboice']['broker']['port'] %>},
+    {broker_port, <%= node['verboice']['broker']['agi_port'] %>},
     {base_url, "http://<%= node['verboice']['host_name'] %>"},
     {record_dir, "/u/apps/verboice/current/data/call_logs/"},
 

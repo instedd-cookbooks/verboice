@@ -36,3 +36,8 @@ directory "#{app_dir}/shared/data" do
   owner node['current_user']
   group node['current_user']
 end
+
+directory "#{node['verboice']['broker']['asterisk']['sounds_dir']}/verboice" do
+  owner node['current_user']
+  group node['current_user']
+end

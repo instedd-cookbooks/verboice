@@ -1,6 +1,6 @@
-default['verboice']['broker']['asterisk']['sounds_dir'] = '/var/lib/asterisk/sounds'
 default['verboice']['broker']['agi_port'] = 19000
 default['verboice']['broker']['bert_port'] = 9999
+default['verboice']['broker']['asterisk']['sounds_dir'] = '/usr/share/asterisk/sounds'
 default['verboice']['broker']['asterisk']['config_dir'] = '/etc/asterisk'
 default['verboice']['broker']['asterisk']['agi_use_pipe_separator'] =  false
 default['verboice']['attr_encrypted_key'] = 'super_secret'

@@ -32,7 +32,7 @@
 
   {poirot, [
     {source, <<"verboice-broker">>},
-    {sender, {zmq, [{url, "tcp://10.147.15.222:2120"}]}}
+    {sender, {zmq, [{url, "tcp://<%= node['verboice']['poirot']['server'] %>"}]}}
   ]},
 
   {inets, [

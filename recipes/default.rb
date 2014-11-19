@@ -1,5 +1,6 @@
 package "git"
 package "libzmq-dev"
+package "festival"
 include_recipe "erlang"
 include_recipe "rbenv::default"
 include_recipe "rbenv::ruby_build"

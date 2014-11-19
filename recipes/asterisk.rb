@@ -7,6 +7,15 @@ service "asterisk" do
   action :enable
 end
 
+if node['verboice']['asterisk']['local_networks'].empty?
+  node['network']['interfaces'].each do |name, iface|
+    iface['addresses'].each do |addr, addr_props|
+      if addr_props['family'] == 'inet'
+        node.default['verboice']['asterisk']['local_networks'] << "#{addr}/#{addr_props['prefixlen']}"
+      end
+    end
+  end
+end
 
 config_files = %w(dnsmgr.conf extensions.ael logger.conf manager.conf modules.conf sip.conf)
 verboice_files = %w(sip_verboice_channels.conf sip_verboice_registrations.conf)

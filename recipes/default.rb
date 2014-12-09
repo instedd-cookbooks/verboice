@@ -28,7 +28,7 @@ end
 app_dir = "/u/apps/verboice"
 
 rails_web_app "verboice" do
-  server_name "verboice-new.instedd.org"
+  server_name node['verboice']['broker']['nuntium']['host']
   config_files %w(credentials.yml nuntium.yml oauth.yml verboice.config verboice.yml database.yml poirot.yml guisso.yml)
 end
 

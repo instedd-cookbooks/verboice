@@ -28,3 +28,8 @@ default['verboice']['guisso']['enabled'] = false
 default['verboice']['guisso']['url'] = 'https://login.instedd.org'
 default['verboice']['guisso']['client_id'] = ''
 default['verboice']['guisso']['client_secret'] = ''
+
+default['verboice']['web']['ssl']['enabled'] = false
+default['verboice']['web']['ssl']['cert_file'] = nil
+default['verboice']['web']['ssl']['cert_key_file'] = nil
+default['verboice']['web']['ssl']['cert_chain_file'] = nil

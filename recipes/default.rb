@@ -31,6 +31,10 @@ rails_web_app "verboice" do
   server_name node['verboice']['host_name']
   config_files %w(credentials.yml nuntium.yml oauth.yml verboice.config verboice.yml database.yml poirot.yml guisso.yml)
   passenger_spawn_method :conservative
+  ssl node['verboice']['web']['ssl']['enabled']
+  ssl_cert_file node['verboice']['web']['ssl']['cert_file']
+  ssl_cert_key_file node['verboice']['web']['ssl']['cert_key_file']
+  ssl_cert_chain_file node['verboice']['web']['ssl']['cert_chain_file']
 end
 
 directory "#{app_dir}/shared/data" do

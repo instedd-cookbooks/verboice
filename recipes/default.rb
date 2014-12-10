@@ -35,6 +35,9 @@ rails_web_app "verboice" do
   ssl_cert_file node['verboice']['web']['ssl']['cert_file']
   ssl_cert_key_file node['verboice']['web']['ssl']['cert_key_file']
   ssl_cert_chain_file node['verboice']['web']['ssl']['cert_chain_file']
+  ssl_env_vars({
+    "INSTEDD_THEME" => node['verboice']['web']['ssl']['instedd_theme_url']
+  })
 end
 
 directory "#{app_dir}/shared/data" do

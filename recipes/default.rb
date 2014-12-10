@@ -30,6 +30,7 @@ app_dir = "/u/apps/verboice"
 rails_web_app "verboice" do
   server_name node['verboice']['host_name']
   config_files %w(credentials.yml nuntium.yml oauth.yml verboice.config verboice.yml database.yml poirot.yml guisso.yml)
+  passenger_spawn_method :conservative
 end
 
 directory "#{app_dir}/shared/data" do

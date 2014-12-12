@@ -1,4 +1,4 @@
-package "asterisk"
+include_recipe "verboice::asterisk_source"
 
 service "asterisk" do
   supports :restart => true, :reload => true, :status => :true, :debug => :true,

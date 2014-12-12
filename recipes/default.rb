@@ -1,6 +1,8 @@
 package "git"
 package "libzmq-dev"
 package "festival"
+package "sox"
+package "libsox-fmt-mp3"
 include_recipe "erlang"
 include_recipe "rbenv::default"
 include_recipe "rbenv::ruby_build"

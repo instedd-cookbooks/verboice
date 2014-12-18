@@ -40,6 +40,8 @@ rails_web_app "verboice" do
   ssl_env_vars({
     "INSTEDD_THEME" => node['verboice']['web']['ssl']['instedd_theme_url']
   })
+  partials({"verboice/twilio_proxy.conf.erb" => { cookbook: "verboice" }})
+  ssl_partials({"verboice/twilio_proxy.conf.erb" => { cookbook: "verboice" }})
 end
 
 directory "#{app_dir}/shared/data" do

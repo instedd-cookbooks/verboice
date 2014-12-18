@@ -8,7 +8,7 @@ include_recipe "rbenv::default"
 include_recipe "rbenv::ruby_build"
 include_recipe "instedd-common::passenger"
 include_recipe "nodejs"
-include_recipe "apache2::mod_proxy"
+include_recipe "apache2::mod_proxy_http"
 
 rbenv_ruby "1.9.3-p484"
 rbenv_gem "bundler" do

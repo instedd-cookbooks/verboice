@@ -17,7 +17,7 @@ if node['verboice']['asterisk']['local_networks'].empty?
   end
 end
 
-config_files = %w(dnsmgr.conf extensions.ael logger.conf manager.conf modules.conf sip.conf)
+config_files = %w(dnsmgr.conf extensions.conf logger.conf manager.conf modules.conf sip.conf)
 verboice_files = %w(sip_verboice_channels.conf sip_verboice_registrations.conf)
 
 config_files.each do |config_file|

@@ -47,3 +47,13 @@ ruby_block "remove default asterisk configuration" do
     resources(service: 'asterisk').run_action(:restart) if must_restart
   end
 end
+
+logrotate_app "asterisk" do
+  path "/var/log/asterisk/full"
+  frequency :weekly
+  rotate 11
+  create '644 root adm'
+  options %w(missingok compress delaycompress notifempty)
+  postrotate "/usr/sbin/asterisk -rx 'logger reload' > /dev/null 2> /dev/null"
+end
+

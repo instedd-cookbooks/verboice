@@ -19,7 +19,7 @@
     {nuntium_app, "<%= node['verboice']['broker']['nuntium']['application'] %>"},
     {nuntium_app_password, "<%= node['verboice']['broker']['nuntium']['password'] %>"},
 
-    {twilio_callback_url, "http://<%= node['verboice']['host_name'] %>/twilio/"}
+    {twilio_callback_url, "<%= node['verboice']['twilio_callback_url'] || "http://#{node['verboice']['host_name']}/twilio/" %>"}
   ]},
 
   {lager, [

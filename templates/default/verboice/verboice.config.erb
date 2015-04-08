@@ -32,7 +32,11 @@
 
   {poirot, [
     {source, <<"verboice-broker">>},
+    <% if node['verboice']['poirot']['sender'] == 'inproc' %>
+    {receiver, []}
+    <% else %>
     {sender, {zmq, [{url, "tcp://<%= node['verboice']['poirot']['server'] %>"}]}}
+    <% end %>
   ]},
 
   {inets, [

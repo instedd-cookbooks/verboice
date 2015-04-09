@@ -54,3 +54,14 @@ directory "#{node['verboice']['broker']['asterisk']['sounds_dir']}/verboice" do
   owner node['current_user']
   group node['current_user']
 end
+
+directory "/var/log/verboice" do
+  owner node['current_user']
+  group node['current_user']
+end
+
+newrelic_yml "/u/apps/verboice/shared/newrelic.yml" do
+  agent_type 'ruby'
+  app_name node['verboice']['newrelic']['app_name']
+  license node['newrelic']['license']
+end

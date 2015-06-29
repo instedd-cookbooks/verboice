@@ -1,5 +1,5 @@
 package "git"
-package "libzmq-dev"
+package "libzmq3-dev"
 package "festival"
 package "sox"
 package "libsox-fmt-mp3"

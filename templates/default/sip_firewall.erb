@@ -1,0 +1,46 @@
+*raw
+
+# SIP firewall rules taken and adapted from
+# http://blog.ls20.com/securing-your-asterisk-voip-server-with-iptables/
+
+-A PREROUTING -i eth+ -m recent --update --name BADSIP -j DROP
+-A PREROUTING -i eth+ -p tcp --dport 5060:5082 -j TCPSIP
+-A PREROUTING -i eth+ -p udp --dport 5060:5082 -j UDPSIP
+
+# Known SIP scanners
+-A TCPSIP -m string --string "sundayddr" --algo bm -j BADSIP
+-A TCPSIP -m string --string "sipsak" --algo bm -j BADSIP
+-A TCPSIP -m string --string "sipvicious" --algo bm --icase -j BADSIP
+-A TCPSIP -m string --string "friendly-scanner" --algo bm -j BADSIP
+-A TCPSIP -m string --string "iWar" --algo bm -j BADSIP
+-A TCPSIP -m string --string "sip-scan" --algo bm -j BADSIP
+-A TCPSIP -m string --string "sipcli" --algo bm -j BADSIP
+-A TCPSIP -m string --string "eyeBeam" --algo bm -j BADSIP
+-A TCPSIP -m string --string "VaxSIPUserAgent" --algo bm -j BADSIP
+-A TCPSIP -m string --string "sip:nm@nm" --algo bm -j BADSIP
+-A TCPSIP -m string --string "sip:carol@chicago.com" --algo bm -j BADSIP
+-A UDPSIP -m string --string "sundayddr" --algo bm --to 1500 -j BADSIP
+-A UDPSIP -m string --string "sipsak" --algo bm --to 1500 -j BADSIP
+-A UDPSIP -m string --string "sipvicious" --algo bm --icase --to 1500 -j BADSIP
+-A UDPSIP -m string --string "friendly-scanner" --algo bm --to 1500 -j BADSIP
+-A UDPSIP -m string --string "iWar" --algo bm --to 1500 -j BADSIP
+-A UDPSIP -m string --string "sip-scan" --algo bm --to 1500 -j BADSIP
+-A UDPSIP -m string --string "sipcli" --algo bm --to 1500 -j BADSIP
+-A UDPSIP -m string --string "eyeBeam" --algo bm --to 1500 -j BADSIP
+-A UDPSIP -m string --string "VaxSIPUserAgent" --algo bm --to 1500 -j BADSIP
+-A UDPSIP -m string --string "sip:nm@nm" --algo bm --to 1500 -j BADSIP
+-A UDPSIP -m string --string "sip:carol@chicago.com" --algo bm --to 1500 -j BADSIP
+
+# REGISTER/INVITE throttling
+-A TCPSIP -m string --string "REGISTER sip:" --algo bm -m recent --set --name SIP_R
+-A TCPSIP -m string --string "REGISTER sip:" --algo bm -m recent --update --seconds 10 --hitcount 20 --rttl --name SIP_R -j DROP
+-A UDPSIP -m string --string "REGISTER sip:" --algo bm --to 1500 -m recent --set --name SIP_R
+-A UDPSIP -m string --string "REGISTER sip:" --algo bm --to 1500 -m recent --update --seconds 10 --hitcount 20 --rttl --name SIP_R -j DROP
+-A TCPSIP -m string --string "INVITE sip:" --algo bm -m recent --set --name SIP_I
+-A TCPSIP -m string --string "INVITE sip:" --algo bm -m recent --update --seconds 5 --hitcount 20 --rttl --name SIP_I -j DROP
+-A UDPSIP -m string --string "INVITE sip:" --algo bm --to 1500 -m recent --set --name SIP_I
+-A UDPSIP -m string --string "INVITE sip:" --algo bm --to 1500 -m recent --update --seconds 5 --hitcount 20 --rttl --name SIP_I -j DROP
+
+# Drop anything that got to this chain
+-A BADSIP -m recent --set --name BADSIP -j DROP
+

@@ -22,6 +22,7 @@ suites:
       - recipe[mysql::server]
       - recipe[verboice::asterisk]
       - recipe[verboice::default]
+      - recipe[verboice::sip_firewall]
     attributes:
       verboice:
         poirot:

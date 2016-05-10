@@ -33,7 +33,7 @@ default['verboice']['web']['ssl']['enabled'] = false
 default['verboice']['web']['ssl']['cert_file'] = nil
 default['verboice']['web']['ssl']['cert_key_file'] = nil
 default['verboice']['web']['ssl']['cert_chain_file'] = nil
-default['verboice']['web']['ssl']['instedd_theme_url'] = "http://theme.instedd.org"
+default['verboice']['web']['ssl']['instedd_theme_url'] = nil # "https://theme.instedd.org"
 
 default['verboice']['newrelic']['app_name'] = 'Verboice'
 

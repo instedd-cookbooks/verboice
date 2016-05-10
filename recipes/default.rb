@@ -38,9 +38,8 @@ rails_web_app "verboice" do
   ssl_cert_file node['verboice']['web']['ssl']['cert_file']
   ssl_cert_key_file node['verboice']['web']['ssl']['cert_key_file']
   ssl_cert_chain_file node['verboice']['web']['ssl']['cert_chain_file']
-  ssl_env_vars({
-    "INSTEDD_THEME" => node['verboice']['web']['ssl']['instedd_theme_url']
-  })
+  partials({"verboice/env.conf.erb" => { cookbook: "verboice" }})
+  ssl_partials({"verboice/env.conf.erb" => { cookbook: "verboice" }})
   partials({"verboice/twilio_proxy.conf.erb" => { cookbook: "verboice" }})
   ssl_partials({"verboice/twilio_proxy.conf.erb" => { cookbook: "verboice" }})
 end

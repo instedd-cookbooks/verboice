@@ -3,10 +3,6 @@ exten => s,1,Hangup
 exten => _,1,Hangup
 
 [verboice]
-exten => s,1,Hangup
 exten => h,1,NoOp
-exten => _.,1,AGI(agi://localhost:<%= node['verboice']['broker']['agi_port'] %>,,${EXTEN})
-
-[verboice-restart]
-exten => h,1,NoOp
-exten => _.,1,AGI(agi://localhost:<%= node['verboice']['broker']['agi_port'] %>,${EXTEN})
+exten => _X.,1,AGI(agi://localhost:<%= node['verboice']['broker']['agi_port'] %>,,${EXTEN})
+exten => s,1,AGI(agi://localhost:<%= node['verboice']['broker']['agi_port'] %>,,${EXTEN})

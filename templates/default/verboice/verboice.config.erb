@@ -4,8 +4,12 @@
     {asterisk_sounds_dir, "<%= node['verboice']['broker']['asterisk']['sounds_dir'] %>"},
     {asterisk_agi_use_pipe_separator, <%= node['verboice']['broker']['asterisk']['agi_use_pipe_separator'] %>},
     {broker_port, <%= node['verboice']['broker']['agi_port'] %>},
+    {broker_ip, loopback},
     {base_url, "http://<%= node['verboice']['host_name'] %>"},
     {record_dir, "/u/apps/verboice/current/data/call_logs/"},
+
+    {seconds_between_calls, 8},
+    {seconds_for_call_back, 30},
 
     {db_name, "verboice"},
     {db_user, "<%= node['mysql']['admin_username'] %>"},
@@ -18,6 +22,15 @@
     {nuntium_account, "<%= node['verboice']['broker']['nuntium']['account'] %>"},
     {nuntium_app, "<%= node['verboice']['broker']['nuntium']['application'] %>"},
     {nuntium_app_password, "<%= node['verboice']['broker']['nuntium']['password'] %>"},
+
+    <% if node['verboice']['guisso']['enabled'] %>
+    {guisso_client_id, "<%= node['verboice']['guisso']['client_id'] %>"},
+    {guisso_client_secret, "<%= node['verboice']['guisso']['client_secret'] %>"},
+    {guisso_url, "<%= node['verboice']['guisso']['url'] %>"},
+    <% end %>
+
+    {hub_enabled, <%= !!node['verboice']['hub']['enabled'] %>},
+    {hub_url, "<%= node['verboice']['hub']['url'] %>"},
 
     {twilio_callback_url, "<%= node['verboice']['twilio_callback_url'] || "http://#{node['verboice']['host_name']}/twilio/" %>"}
   ]},
@@ -38,6 +51,14 @@
     {sender, {zmq, [{url, "tcp://<%= node['verboice']['poirot']['server'] %>"}]}}
     <% end %>
   ]},
+
+  <% if node['verboice']['telemetry']['enabled'] %>
+  {telemetry, [
+    {agent_host, "<%= node['verboice']['telemetry']['agent_host'] %>"},
+    {agent_port, <%= node['verboice']['telemetry']['agent_port'] %>},
+    {buffer_size, 5}
+  ]},
+  <% end %>
 
   {inets, [
     {services, [

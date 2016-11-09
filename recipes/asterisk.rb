@@ -18,8 +18,8 @@ if node['verboice']['asterisk']['local_networks'].empty?
   end
 end
 
-config_files = %w(extensions.conf logger.conf manager.conf modules.conf pjsip.conf) + %w(cdr.conf cel.conf dnsmgr.conf ari.conf voicemail.conf)
-default_files = %w(acl.conf cli_aliases.conf features.conf indications.conf pjproject.conf)
+config_files = %w(extensions.conf cli_aliases.conf logger.conf manager.conf modules.conf pjsip.conf) + %w(cdr.conf cel.conf dnsmgr.conf ari.conf voicemail.conf)
+default_files = %w(acl.conf features.conf indications.conf pjproject.conf)
 verboice_files = %w(pjsip_verboice.conf)
 
 config_files.each do |config_file|

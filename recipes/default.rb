@@ -76,9 +76,16 @@ directory "/var/log/verboice" do
   group node['current_user']
 end
 
-newrelic_yml "/u/apps/verboice/shared/newrelic.yml" do
+newrelic_yml "#{app_dir}/shared/newrelic.yml" do
   agent_type 'ruby'
   app_name node['verboice']['newrelic']['app_name']
   license node['newrelic']['license']
   only_if { node['newrelic']['license'] }
+end
+
+logrotate_app "verboice" do
+  path ["/var/log/verboice/*.log", "#{app_dir}/shared/log/*.log"]
+  frequency :daily
+  rotate 7
+  options %w(missingok compress delaycompress notifempty copytruncate)
 end

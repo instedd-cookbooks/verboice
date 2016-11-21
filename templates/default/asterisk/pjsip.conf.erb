@@ -1,0 +1,11 @@
+[default]
+type=transport
+protocol=udp
+bind=0.0.0.0
+external_media_address=<%= @params[:external_ip] %>
+external_signaling_address=<%= @params[:external_ip] %>
+<% @params[:local_networks].each do |net| %>
+local_net=<%= net %>
+<% end %>
+
+#tryinclude "pjsip_verboice.conf"

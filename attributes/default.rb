@@ -37,3 +37,13 @@ default['verboice']['web']['ssl']['instedd_theme_url'] = nil # "https://theme.in
 
 default['verboice']['newrelic']['app_name'] = 'Verboice'
 
+default['verboice']['hub']['enabled'] = false
+default['verboice']['hub']['url'] = "http://hub.instedd.org/"
+default['verboice']['hub']['token'] = ""
+default['verboice']['hub']['connector_guid'] = ""
+
+default['verboice']['telemetry']['enabled'] = false
+default['verboice']['telemetry']['agent_host'] = "127.0.0.1"
+default['verboice']['telemetry']['agent_port'] = 8089
+
+default['verboice']['pjproject']['version'] = "2.5.5"

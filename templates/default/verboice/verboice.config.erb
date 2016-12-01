@@ -45,11 +45,13 @@
 
   {poirot, [
     {source, <<"verboice-broker">>},
-    <% if node['verboice']['poirot']['sender'] == 'inproc' %>
-    {receiver, []}
-    <% else %>
-    {sender, {zmq, [{url, "tcp://<%= node['verboice']['poirot']['server'] %>"}]}}
-    <% end %>
+    {modules [
+      <% if node['verboice']['poirot']['sender'] == 'inproc' %>
+      {zmq_receiver, []}
+      <% else %>
+      {zmq_sender, [{url, "tcp://<%= node['verboice']['poirot']['server'] %>"}]}}
+      <% end %>
+    ]}
   ]},
 
   <% if node['verboice']['telemetry']['enabled'] %>
